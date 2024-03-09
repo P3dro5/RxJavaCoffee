@@ -14,5 +14,4 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "RxJavaCoffee"
-include(":app")
- 
+include(":app:java")

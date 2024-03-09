@@ -1,4 +1,4 @@
-package com.mvi.rxjavacoffee.common;
+package common;
 
 import java.util.List;
 
