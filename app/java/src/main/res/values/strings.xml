@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">RxCoffee</string>
+    <string name="search_button">RxCoffee</string>
+    <string name="edit">RxCoffee</string>
 </resources>
