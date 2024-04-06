@@ -6,7 +6,7 @@ import com.google.gson.GsonBuilder;
 
 import java.util.List;
 
-import common.CoffeeData;
+import common.CoffeeDataDTO;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -14,15 +14,15 @@ import rx.Observable;
 
 public class RetrofitBuilder {
 
-    private static final String GITHUB_BASE_URL = "https://api.sampleapis.com/";
+    private static final String COFFEE_BASE_URL = "https://api.sampleapis.com/";
 
     private static RetrofitBuilder instance;
-    private CoffeeService coffeeService;
+    private final CoffeeService coffeeService;
 
     private RetrofitBuilder() {
         final Gson gson =
                 new GsonBuilder().setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES).create();
-        final Retrofit retrofit = new Retrofit.Builder().baseUrl(GITHUB_BASE_URL)
+        final Retrofit retrofit = new Retrofit.Builder().baseUrl(COFFEE_BASE_URL)
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
@@ -36,7 +36,7 @@ public class RetrofitBuilder {
         return instance;
     }
 
-    public Observable<List<CoffeeData>> getRepos() {
+    public Observable<List<CoffeeDataDTO>> getRepos() {
         return coffeeService.getListOfCoffees();
     }
 }

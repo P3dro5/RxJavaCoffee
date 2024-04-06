@@ -1,9 +1,11 @@
 package ui;
 
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
@@ -13,22 +15,21 @@ import com.mvi.java.R;
 import java.util.ArrayList;
 import java.util.List;
 
-import common.CoffeeData;
-import domain.CoffeeService;
+import common.CoffeeDataDTO;
 
 public class CoffeeRepoAdapter extends BaseAdapter {
 
-        private List<CoffeeData> gitHubRepos = new ArrayList<>();
+        private final List<CoffeeDataDTO> rxCoffeeDto = new ArrayList<>();
 
         @Override public int getCount() {
-            return gitHubRepos.size();
+            return rxCoffeeDto.size();
         }
 
-        @Override public CoffeeData getItem(int position) {
-            if (position < 0 || position >= gitHubRepos.size()) {
+        @Override public CoffeeDataDTO getItem(int position) {
+            if (position < 0 || position >= rxCoffeeDto.size()) {
                 return null;
             } else {
-                return gitHubRepos.get(position);
+                return rxCoffeeDto.get(position);
             }
         }
 
@@ -43,12 +44,12 @@ public class CoffeeRepoAdapter extends BaseAdapter {
             return view;
         }
 
-        public void setGitHubRepos(@Nullable List<CoffeeData> repos) {
+        public void setRxJavaCoffees(@Nullable List<CoffeeDataDTO> repos) {
             if (repos == null) {
                 return;
             }
-            gitHubRepos.clear();
-            gitHubRepos.addAll(repos);
+            rxCoffeeDto.clear();
+            rxCoffeeDto.addAll(repos);
             notifyDataSetChanged();
         }
 
@@ -62,17 +63,20 @@ public class CoffeeRepoAdapter extends BaseAdapter {
 
         private static class CoffeeDataViewHolder {
 
-            private TextView textRepoName;
-            private TextView textRepoDescription;
-            private TextView textLanguage;
-            private TextView textStars;
+            private final TextView coffeeName;
+            private final TextView coffeeDescription;
+            private final ImageView coffeeImage;
 
             public CoffeeDataViewHolder(View view) {
-
+                coffeeName = (TextView) view.findViewById(R.id.text_coffee_name);
+                coffeeDescription = (TextView) view.findViewById(R.id.text_coffee_description);
+                coffeeImage = (ImageView) view.findViewById(R.id.coffee_image);
             }
 
-            public void setCoffeeData(CoffeeData coffeeData) {
-
+            public void setCoffeeData(CoffeeDataDTO coffeeDataDTO) {
+                coffeeName.setText(coffeeDataDTO.title);
+                coffeeDescription.setText(coffeeDataDTO.description);
+                coffeeImage.setImageURI(Uri.parse(coffeeDataDTO.image));
             }
         }
     }
