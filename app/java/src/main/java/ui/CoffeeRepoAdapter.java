@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 
+import com.bumptech.glide.Glide;
 import com.mvi.java.R;
 
 import java.util.ArrayList;
@@ -41,6 +42,9 @@ public class CoffeeRepoAdapter extends BaseAdapter {
             final View view = (convertView != null ? convertView : createView(parent));
             final CoffeeDataViewHolder viewHolder = (CoffeeDataViewHolder) view.getTag();
             viewHolder.setCoffeeData(getItem(position));
+            Glide.with(view)
+                    .load(getItem(position).image)
+                    .into((ImageView) view.findViewById(R.id.coffee_image));
             return view;
         }
 

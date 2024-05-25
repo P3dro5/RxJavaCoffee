@@ -37,6 +37,6 @@ public class RetrofitBuilder {
     }
 
     public Observable<List<CoffeeDataDTO>> getRepos() {
-        return coffeeService.getListOfCoffees();
+        return coffeeService.getListOfHotCoffees();
     }
 }

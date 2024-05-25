@@ -1,9 +1,13 @@
 package ui;
 
+import static android.view.View.GONE;
+import static android.view.View.VISIBLE;
+
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -29,10 +33,17 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.coffee_activity);
 
         final Button btn = (Button)findViewById(R.id.coffee_button);
+        final TextView introText = (TextView)findViewById(R.id.intro_text);
 
         final ListView listView = (ListView) findViewById(R.id.list_view_repos);
         listView.setAdapter(adapter);
-        btn.setOnClickListener(view -> getStarredRepos());
+
+        btn.setOnClickListener(view -> {
+            getStarredRepos();
+            btn.setVisibility(GONE);
+            introText.setVisibility(VISIBLE);
+        });
+
     }
 
     @Override protected void onDestroy() {

@@ -8,5 +8,5 @@ import rx.Observable;
 
 public interface CoffeeService {
     @GET("coffee/hot")
-    Observable<List<CoffeeDataDTO>> getListOfCoffees();
+    Observable<List<CoffeeDataDTO>> getListOfHotCoffees();
 }

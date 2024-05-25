@@ -2,4 +2,6 @@
     <string name="app_name">RxCoffee</string>
     <string name="search_button">RxCoffee</string>
     <string name="edit">RxCoffee</string>
+    <string name="intro_text">Enjoy your coffee, just the way you want it!! 😉☕</string>
+    <string name="coffee_image">coffee_image</string>
 </resources>
